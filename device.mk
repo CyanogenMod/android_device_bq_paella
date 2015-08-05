@@ -72,6 +72,17 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmpbase
 
+# Charger
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.usb.id.charge=3009 \
+    ro.usb.id.mtp=3003 \
+    ro.usb.id.mtp_adb=3004 \
+    ro.usb.id.ptp=3005 \
+    ro.usb.id.ptp_adb=3006 \
+    ro.usb.id.ums=3007 \
+    ro.usb.id.ums_adb=3008 \
+    ro.usb.vid=2a47
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8916
