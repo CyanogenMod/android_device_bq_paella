@@ -1,0 +1,55 @@
+# Audio
+ro.qc.sdk.audio.fluencetype=fluence
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
+
+# mp3/aac offload to Modem
+av.offload.enable=true
+av.streaming.offload.enable=true
+audio.offload.gapless.enabled=true
+audio.offload.pcm.16bit.enable=true
+audio.offload.pcm.24bit.enable=true
+audio.offload.disable=0
+
+# set roaming indicator to always show
+ro.config.always_show_roaming=true
+
+# Display
+ro.sf.lcd_density=320
+
+# Radio
+persist.radio.multisim.config=dsds
+persist.radio.no_cons_man_roam=1
+ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
+
+ro.com.android.mobiledata=true
+ro.telephony.default_network=9
+
+# USB ID
+ro.usb.id.charge=3009
+ro.usb.id.mtp=3003
+ro.usb.id.mtp_adb=3004
+ro.usb.id.ptp=3005
+ro.usb.id.ptp_adb=3006
+ro.usb.id.ums=3007
+ro.usb.id.ums_adb=3008
+ro.usb.vid=2a47
+
+#Set composition for USB
+persist.sys.usb.config=mtp
+
+##Set read only default composition for USB
+ro.sys.usb.default.config=mtp
+
+#Subsystem
+persist.sys.ssr.enable_debug=1
+
+#adb
+persist.service.adb.enable=1                                                    
+persist.service.debuggable=1
+
+#Enable B service adj transition by default
+ro.sys.fw.bservice_enable=true
+ro.sys.fw.bservice_limit=5
+ro.sys.fw.bservice_age=5000
