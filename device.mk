@@ -135,7 +135,7 @@ PRODUCT_PACKAGES += \
 
 # Soft magnetic calibration
 PRODUCT_COPY_FILES+= \
-     hardware/qcom/sensors/bst_fifo/daemon/softiron_matrix.txt:system/etc/sensor/softiron_matrix.txt
+     $(LOCAL_PATH)/sensors/bst_fifo/daemon/softiron_matrix.txt:system/etc/sensor/softiron_matrix.txt
 
 #GPS
 PRODUCT_PACKAGES += \
