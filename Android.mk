@@ -26,11 +26,6 @@ LOCAL_MODULE_PATH  := $(TARGET_OUT_KEYLAYOUT)
 include $(BUILD_PREBUILT)
 
 
-# Create cp dlmk
-#
-$(shell mkdir device/qcom/common/dlkm; \
-	cp device/bq/paella/dlkm/AndroidKernelModule.mk device/qcom/common/dlkm/AndroidKernelModule.mk)
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 endif
