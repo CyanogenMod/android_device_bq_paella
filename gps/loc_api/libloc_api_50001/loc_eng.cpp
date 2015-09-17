@@ -839,7 +839,16 @@ void LocEngReportPosition::proc() const {
     }
 }
 void LocEngReportPosition::locallog() const {
-    LOC_LOGV("LocEngReportPosition");
+    LOC_LOGV("flags: %d\n  source: %d\n  latitude: %f\n  longitude: %f\n  "
+             "altitude: %f\n  speed: %f\n  bearing: %f\n  accuracy: %f\n  "
+             "timestamp: %lld\n  rawDataSize: %d\n  rawData: %p\n  Session"
+             " status: %d\n Technology mask: %u",
+             mLocation.gpsLocation.flags, mLocation.position_source,
+             mLocation.gpsLocation.latitude, mLocation.gpsLocation.longitude,
+             mLocation.gpsLocation.altitude, mLocation.gpsLocation.speed,
+             mLocation.gpsLocation.bearing, mLocation.gpsLocation.accuracy,
+             mLocation.gpsLocation.timestamp, mLocation.rawDataSize,
+             mLocation.rawData, mStatus, mTechMask);
 }
 void LocEngReportPosition::log() const {
     locallog();
@@ -880,7 +889,19 @@ void LocEngReportSv::proc() const {
     }
 }
 void LocEngReportSv::locallog() const {
-    LOC_LOGV("%s:%d] LocEngReportSv",__func__, __LINE__);
+    LOC_LOGV("num sv: %d\n  ephemeris mask: %dxn  almanac mask: %x\n  "
+             "used in fix mask: %x\n      sv: prn         snr       "
+             "elevation      azimuth",
+             mSvStatus.num_svs, mSvStatus.ephemeris_mask,
+             mSvStatus.almanac_mask, mSvStatus.used_in_fix_mask);
+    for (int i = 0; i < mSvStatus.num_svs && i < GPS_MAX_SVS; i++) {
+        LOC_LOGV("   %d:   %d    %f    %f    %f\n  ",
+                 i,
+                 mSvStatus.sv_list[i].prn,
+                 mSvStatus.sv_list[i].snr,
+                 mSvStatus.sv_list[i].elevation,
+                 mSvStatus.sv_list[i].azimuth);
+    }
 }
 inline void LocEngReportSv::log() const {
     locallog();
