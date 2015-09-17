@@ -18,7 +18,7 @@ FORCE_32_BIT := true
 -include device/cyanogen/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/bq/paella
-TARGET_VENDOR := bq #Needed in the proprietary includes.
+TARGET_VENDOR := bq
 
 BOARD_USES_QCOM_HARDWARE := true
 
