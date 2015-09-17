@@ -35,8 +35,8 @@ CONFIG_EAP_PROXY_DUAL_SIM := true
 
 # Camera
 BOARD_CAMERA_SENSORS := \
-    ov5670_q5v41b \
-    ov8865_q8v18a
+    imx214_olqba22 \
+    s5k5e2_olq5f20
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
