@@ -21,42 +21,21 @@ bin/hci_qcomm_init
 
 # Camera
 bin/mm-qcamera-daemon
-vendor/lib/libactuator_dw9714.so
-vendor/lib/libactuator_dw9714_camcorder.so
-vendor/lib/libactuator_dw9714_camera.so
-vendor/lib/libactuator_dw9714_owt8a12.so
-vendor/lib/libactuator_dw9714_owt8a12_camcorder.so
-vendor/lib/libactuator_dw9714_owt8a12_camera.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_common.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_default_video.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_hfr_120fps.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_hfr_60fps.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_hfr_90fps.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_liveshot.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_preview.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_snapshot.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_video_hd.so
-vendor/lib/libchromatix_ov5670_q5v41b_t86519a1_zsl.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_common.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_default_video.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_hfr_120fps.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_hfr_60fps.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_hfr_90fps.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_liveshot.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_preview.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_snapshot.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_video_hd.so
-vendor/lib/libchromatix_ov8865_q8v18a_owt8a12_zsl.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_common.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_default_video.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_hfr_120fps.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_hfr_60fps.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_hfr_90fps.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_liveshot.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_preview.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_snapshot.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_video_hd.so
-vendor/lib/libchromatix_ov8865_q8v18a_sunny_zsl.so
+vendor/lib/libchromatix_imx214_olqba22_default_video.so
+vendor/lib/libchromatix_imx214_olqba22_hfr_60fps.so
+vendor/lib/libchromatix_imx214_olqba22_video_hd.so
+vendor/lib/libchromatix_imx214_olqba22_hfr_120fps.so
+vendor/lib/libchromatix_imx214_olqba22_liveshot.so
+vendor/lib/libchromatix_imx214_olqba22_snapshot.so
+vendor/lib/libchromatix_imx214_olqba22_common.so
+vendor/lib/libchromatix_imx214_olqba22_preview.so
+vendor/lib/libchromatix_imx214_olqba22_hfr_90fps.so
+vendor/lib/libchromatix_s5k5e2_olq5f20_liveshot.so
+vendor/lib/libchromatix_s5k5e2_olq5f20_preview.so
+vendor/lib/libchromatix_s5k5e2_olq5f20_video.so
+vendor/lib/libchromatix_s5k5e2_olq5f20_video_hd.so
+vendor/lib/libchromatix_s5k5e2_olq5f20_common.so
+vendor/lib/libchromatix_s5k5e2_olq5f20_snapshot.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -76,10 +55,10 @@ vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_imglib.so
-vendor/lib/libmmcamera_ov5670_eeprom.so
-vendor/lib/libmmcamera_ov5670_q5v41b.so
-vendor/lib/libmmcamera_ov8865_q8v18a.so
-vendor/lib/libmmcamera_sunny_q8v18a_t86519a1_eeprom.so
+vendor/lib/libmmcamera_s5k5e2_olq5f20.so
+vendor/lib/libmmcamera_imx214_olqba22.so
+vendor/lib/libmmcamera_s5k5e2_olq5f20_eeprom.so
+vendor/lib/libmmcamera_imx214_olqba22_eeprom.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_wavelet_lib.so
@@ -185,14 +164,15 @@ vendor/lib/libsmemlog.so
 
 # Radio
 -app/qcrilmsgtunnel/qcrilmsgtunnel.apk
--app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
 bin/qmuxd
 bin/radish
 bin/rfs_access
 bin/rmt_storage
+etc/permissions/com.qrd.wappush.xml
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
+-framework/com.qrd.wappush.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
 
@@ -207,4 +187,5 @@ bin/time_daemon
 vendor/lib/libTimeService.so
 
 # WLAN
+-lib/libwpa_qmi_eap_proxy.so
 lib/libwcnss_qmi.so
