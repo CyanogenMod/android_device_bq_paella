@@ -18,7 +18,7 @@ LOCAL_PATH := $(call my-dir)
 ifeq ($(TARGET_DEVICE),paella)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := ft5x06_ts.kl
+LOCAL_MODULE       := himax-touchscreen.kl
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := keylayout/$(LOCAL_MODULE)

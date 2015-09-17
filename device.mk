@@ -34,7 +34,7 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 #Keylayout
 PRODUCT_PACKAGES += \
-	ft5x06_ts.kl
+	himax-touchscreen.kl
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
