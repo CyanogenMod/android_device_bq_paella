@@ -20,8 +20,6 @@ TARGET_VENDOR := bq #Needed in the proprietary includes.
 
 BOARD_USES_QCOM_HARDWARE := true
 
-PRODUCT_DEFAULT_DEV_CERTIFICATE := build/target/product/security/releasekey
-
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 TARGET_KERNEL_CONFIG := paella_defconfig
