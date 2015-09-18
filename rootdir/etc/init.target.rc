@@ -50,9 +50,9 @@ on init
     symlink /storage/usbdisk /mnt/usbdisk
 
 on boot
-    # Touchscreen
-    chown root system /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0040/gesture
-    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0040/gesture
+    # TapToWake
+    chown root system /sys/android_touch/SMWP
+    chmod 0660 /sys/android_touch/SMWP
 
     # KeyDisabler
     chown root system /sys/android_touch/buttons

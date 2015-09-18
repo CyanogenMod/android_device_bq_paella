@@ -1,1 +1,2 @@
 /sys/android_touch/buttons u:object_r:touchpanel_sysfs:s0
+/sys/android_touch/SMWP    u:object_r:touchpanel_sysfs:s0
