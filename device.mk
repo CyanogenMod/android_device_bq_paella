@@ -128,10 +128,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Camera2
 
-
-#Sensors
+# Sensors
 PRODUCT_PACKAGES += \
-	sensord
+    sensord \
+    sensors.msm8916
 
 # Soft magnetic calibration
 PRODUCT_COPY_FILES+= \
