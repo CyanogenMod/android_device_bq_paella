@@ -100,6 +100,7 @@ PRODUCT_PACKAGES += \\
 PRODUCT_PACKAGES += \\
     qcrilmsgtunnel \\
     ConfigurationClient \\
+    com.qrd.wappush \\
     TimeService
 
 PRODUCT_PACKAGES += \\
@@ -108,8 +109,7 @@ PRODUCT_PACKAGES += \\
 
 PRODUCT_PACKAGES += \\
     libqct_resampler \\
-    libmm-abl \\
-    libmm-disp-apis
+    libmm-abl
 
 PRODUCT_PACKAGES += \\
     libloc_api_v02 \\
@@ -391,17 +391,6 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .so
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_PATH := \$(TARGET_OUT_SHARED_LIBRARIES)
-LOCAL_PROPRIETARY_MODULE := true
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE := libmm-disp-apis
-LOCAL_MODULE_OWNER := $VENDOR
-LOCAL_SRC_FILES := proprietary/vendor/lib/libmm-disp-apis.so
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_PATH := \$(2ND_TARGET_OUT_VENDOR_SHARED_LIBRARIES)
 LOCAL_PROPRIETARY_MODULE := true
 include \$(BUILD_PREBUILT)
 
