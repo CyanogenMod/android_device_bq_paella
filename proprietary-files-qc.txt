@@ -175,6 +175,7 @@ etc/permissions/qcrilhook.xml
 -framework/com.qrd.wappush.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
+-priv-app/ConfigurationClient/ConfigurationClient.apk
 
 # Thermal
 bin/thermal-engine
