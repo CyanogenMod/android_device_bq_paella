@@ -154,6 +154,7 @@ $(call inherit-product, device/cyanogen/msm8916-common/msm8916.mk)
 #BQ APPS
 $(call inherit-product-if-exists, vendor/bq/app/config/products.mk)
 $(call inherit-product-if-exists, vendor/bq/vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/bq/paella/paella-vendor.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
         persist.sys.language=en \
