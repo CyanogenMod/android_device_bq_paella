@@ -74,10 +74,3 @@ service sensord /system/bin/sensord
     user system
     group system
     oneshot
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system
-    disabled
-    oneshot

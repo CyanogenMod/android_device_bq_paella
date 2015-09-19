@@ -76,9 +76,6 @@ TARGET_HAVE_SIGNED_VENUS_FW := true
 #Encrypt
 TARGET_HW_DISK_ENCRYPTION := false
 
-BOARD_HAVE_FM := true
-TARGET_QCOM_NO_FM_FIRMWARE := false
-
 BOARD_SEPOLICY_DIRS += \
     device/bq/paella/sepolicy
 

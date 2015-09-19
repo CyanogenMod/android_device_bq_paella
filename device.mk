@@ -85,9 +85,7 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-	init.paella.diag.rc \
 	init.target.rc \
-    init.qcom.fm.sh
 
 # Wlan Driver
 PRODUCT_COPY_FILES += \
