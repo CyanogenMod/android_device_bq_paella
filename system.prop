@@ -48,9 +48,8 @@ ro.sys.usb.default.config=mtp
 #Subsystem
 persist.sys.ssr.enable_debug=1
 
-#adb
-persist.service.adb.enable=1                                                    
-persist.service.debuggable=1
+#Storage
+persist.sys.isUsbOtgEnabled=true
 
 #Enable B service adj transition by default
 ro.sys.fw.bservice_enable=true
