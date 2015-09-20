@@ -137,16 +137,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES+= \
      $(LOCAL_PATH)/sensors/bst_fifo/daemon/softiron_matrix.txt:system/etc/sensor/softiron_matrix.txt
 
-#GPS
-PRODUCT_PACKAGES += \
-	gps.conf \
-	gps.default \
-	gps.mahimahi \
-	libloc_adapter \
-	libgps.utils \
-	libloc_eng \
-	libloc_api_v02
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8916
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
 
 # Inherit the rest from msm8916-common
 $(call inherit-product, device/cyanogen/msm8916-common/msm8916.mk)
