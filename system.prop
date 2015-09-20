@@ -21,6 +21,9 @@ ro.sf.lcd_density=320
 # Enable OMA-CP
 persist.omacp.enable=true
 
+# Factory reset protection
+ro.frp.pst=/dev/block/bootdevice/by-name/config
+
 # Radio
 persist.radio.multisim.config=dsds
 persist.radio.no_cons_man_roam=1
