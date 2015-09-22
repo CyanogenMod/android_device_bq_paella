@@ -58,6 +58,11 @@ on boot
     chown root system /sys/android_touch/buttons
     chmod 0660 /sys/android_touch/buttons
 
+    # Lights
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/green/blink
+
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
