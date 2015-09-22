@@ -56,14 +56,17 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>9</item>
-        <item>30</item>
-        <item>100</item>
-        <item>325</item>
-        <item>1250</item>
-        <item>3500</item>
-        <item>10000</item>
-        <item>20000</item>
+        <item>20</item>
+        <item>50</item>
+        <item>80</item>
+        <item>150</item>
+        <item>250</item>
+        <item>350</item>
+        <item>500</item>
+        <item>650</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1500</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -72,15 +75,18 @@
          The brightness values must be between 0 and 255 and be non-decreasing.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>18</item>
-        <item>30</item>
-        <item>59</item>
-        <item>74</item>
-        <item>92</item>
-        <item>118</item>
-        <item>155</item>
-        <item>222</item>
-        <item>255</item>
+        <item>10</item>   <!-- 0-20 -->
+        <item>17</item>   <!-- 20-50 -->
+        <item>24</item>   <!-- 50-80-->
+        <item>33</item>   <!-- 80-150-->
+        <item>42</item>   <!-- 150-250 -->
+        <item>55</item>   <!-- 250-350 -->
+        <item>70</item>   <!-- 350-500 -->
+        <item>85</item>   <!-- 500-650 -->
+        <item>100</item>  <!-- 650-800-->
+        <item>140</item>  <!-- 800-1000-->
+        <item>180</item>  <!-- 1000-1500-->
+        <item>255</item>  <!-- 1500+ -->
     </integer-array>
 
     <!-- Hardware 'face' keys present on the device, stored as a bit field.
