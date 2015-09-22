@@ -121,6 +121,18 @@
     -->
     <integer name="config_doubleTapOnHomeBehavior">0</integer>
 
+    <!-- Control the behavior when the user long presses the app switch button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnAppSwitchBehavior">1</integer>
+
     <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
                   autodetected from the Configuration. -->
     <bool name="config_showNavigationBar">false</bool>
