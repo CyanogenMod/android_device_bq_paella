@@ -62,6 +62,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/QRD_Headset_cal.acdb:system/etc/acdbdata/QRD/QRD_Headset_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/QRD_Speaker_cal.acdb:system/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
 
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/dax-default.xml:system/vendor/etc/dolby/dax-default.xml
+
+PRODUCT_PACKAGES += libswdap Ds
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8916 
@@ -136,7 +142,6 @@ PRODUCT_PACKAGES += \
 # Soft magnetic calibration
 PRODUCT_COPY_FILES+= \
      $(LOCAL_PATH)/sensors/bst_fifo/daemon/softiron_matrix.txt:system/etc/sensor/softiron_matrix.txt
-
 
 # GPS
 PRODUCT_PACKAGES += \
