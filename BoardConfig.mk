@@ -115,8 +115,6 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 an
 
 TARGET_KERNEL_SOURCE := kernel/bq/msm8916
 
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # inherit from the proprietary version
