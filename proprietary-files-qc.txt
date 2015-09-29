@@ -221,6 +221,8 @@ vendor/lib/libsmemlog.so
 
 # Radio
 -app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+bin/cnd
+bin/dpmd
 bin/netmgrd
 bin/qmuxd
 bin/radish
@@ -229,12 +231,26 @@ bin/rmt_storage
 etc/permissions/com.qrd.wappush.xml
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
+-framework/cneapiclient.jar
+-framework/com.quicinc.cne.jar
+-framework/com.qti.dpmframework.jar
 -framework/com.qrd.wappush.jar
+-framework/dpmapi.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
+lib/libcnefeatureconfig.so
 lib/librmnetctl.so
+-priv-app/CNEService/CNEService.apk
+vendor/lib/libNimsWrap.so
+vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
+vendor/lib/libcneconn.so
+vendor/lib/libcneqmiutils.so
 vendor/lib/libconfigdb.so
+vendor/lib/libdpmctmgr.so
+vendor/lib/libdpmfdmgr.so
+vendor/lib/libdpmframework.so
+vendor/lib/libdpmnsrm.so
 vendor/lib/libnetmgr.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libril-qc-qmi-1.so

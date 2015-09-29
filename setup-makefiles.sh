@@ -104,6 +104,15 @@ PRODUCT_PACKAGES += \\
     TimeService
 
 PRODUCT_PACKAGES += \\
+    CNEService \\
+    cneapiclient \\
+    com.quicinc.cne
+
+PRODUCT_PACKAGES += \\
+    com.qti.dpmframework \\
+    dpmapi
+
+PRODUCT_PACKAGES += \\
     qcnvitems \\
     qcrilhook
 
@@ -217,6 +226,16 @@ LOCAL_CERTIFICATE := platform
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
+LOCAL_MODULE := CNEService
+LOCAL_SRC_FILES := proprietary/priv-app/CNEService/CNEService.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := APPS
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_CERTIFICATE := platform
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
 LOCAL_MODULE := com.qrd.wappush
 LOCAL_MODULE_OWNER := $VENDOR
 LOCAL_SRC_FILES := proprietary/framework/com.qrd.wappush.jar
@@ -240,6 +259,46 @@ include \$(CLEAR_VARS)
 LOCAL_MODULE := qcrilhook
 LOCAL_MODULE_OWNER := $VENDOR
 LOCAL_SRC_FILES := proprietary/framework/qcrilhook.jar
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_CERTIFICATE := PRESIGNED
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := cneapiclient
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/framework/cneapiclient.jar
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_CERTIFICATE := PRESIGNED
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := com.quicinc.cne
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/framework/com.quicinc.cne.jar
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_CERTIFICATE := PRESIGNED
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := com.qti.dpmframework
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/framework/com.qti.dpmframework.jar
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_CERTIFICATE := PRESIGNED
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := dpmapi
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/framework/dpmapi.jar
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
 LOCAL_MODULE_CLASS := JAVA_LIBRARIES

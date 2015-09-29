@@ -134,6 +134,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Camera2
 
+# Connectivity Engine support
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig
+
+PRODUCT_PACKAGES += \
+    services-ext \
+    init.cne.rc
+
+PRODUCT_PROPERTY_OVERRIDES +=
+    persist.cne.feature=1 \
+    persist.dpm.feature=3
+
 # Sensors
 PRODUCT_PACKAGES += \
     sensord \
@@ -155,12 +167,21 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
 
 ifeq ($(QCPATH),)
+# netmgr/dpm
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml \
     $(LOCAL_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml \
     $(LOCAL_PATH)/configs/data/NsrmConfiguration.xml:system/etc/dpm/nsrm/NsrmConfiguration.xml \
     $(LOCAL_PATH)/configs/data/dpm.conf:system/etc/dpm/dpm.conf
+
+# Connectivity Engine
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/cne/cneapiclient.xml:system/etc/permissions/cneapiclient.xml \
+    $(LOCAL_PATH)/configs/cne/com.quicinc.cne.xml:system/etc/permissions/com.quicinc.cne.xml \
+    $(LOCAL_PATH)/configs/cne/andsfCne.xml:system/etc/cne/andsfCne.xml \
+    $(LOCAL_PATH)/configs/cne/SwimConfig.xml:system/etc/cne/SwimConfig.xml
+
 endif
 
 # Inherit the rest from msm8916-common
