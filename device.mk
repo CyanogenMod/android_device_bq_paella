@@ -184,6 +184,9 @@ PRODUCT_COPY_FILES += \
 
 endif
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
+
 # Inherit the rest from msm8916-common
 $(call inherit-product, device/cyanogen/msm8916-common/msm8916.mk)
 
