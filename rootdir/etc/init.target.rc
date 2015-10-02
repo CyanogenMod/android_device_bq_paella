@@ -25,6 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /init.cne.rc
+
 on init
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
@@ -79,11 +81,3 @@ service sensord /system/bin/sensord
     user system
     group system
     oneshot
-
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root inet
-
-service dpmd /system/bin/dpmd
-    class late_start
-    socket dpmd stream 660 root system

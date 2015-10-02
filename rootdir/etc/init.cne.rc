@@ -8,4 +8,13 @@
 
 #Export the following LD_PRELOAD when enabling vendor CnE.
 
-    export LD_PRELOAD /vendor/lib/libNimsWrap.so
+on init
+    export LD_PRELOAD libsigchain.so:libNimsWrap.so
+
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+
+service dpmd /system/bin/dpmd
+    class late_start
+    socket dpmd stream 660 root system
