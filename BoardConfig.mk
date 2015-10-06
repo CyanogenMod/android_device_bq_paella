@@ -83,6 +83,9 @@ TARGET_CPU_CORTEX_A53 := true
 TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
 TARGET_NO_RPC := true
 
+# init
+TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_paella.c
+
 # liblights
 TARGET_PROVIDES_LIBLIGHT := true
 
