@@ -50,9 +50,13 @@ static void import_cmdline(char *name, int for_emulator)
 
     if (!strcmp(name,"androidboot.countrycode") && !strncmp(value,"ES",2)) {
         property_set("ro.prebundled.mcc", "214");
+        property_set("ro.product.locale.language", "es");
+        property_set("ro.product.locale.region", "ES");
         sku_done = 1;
     } else if (!strcmp(name,"androidboot.countrycode") && !strncmp(value,"GB",2)) {
         property_set("ro.prebundled.mcc", "234");
+        property_set("ro.product.locale.language", "en");
+        property_set("ro.product.locale.region", "GB");
         sku_done = 1;
     }
 }
@@ -75,6 +79,8 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     if (!sku_done) {
         // apply defaults
+        property_set("ro.product.locale.language", "en");
+        property_set("ro.product.locale.region", "US");
     }
 }
 

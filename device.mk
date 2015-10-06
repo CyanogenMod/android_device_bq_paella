@@ -196,6 +196,8 @@ $(call inherit-product-if-exists, vendor/bq/vendor-blobs.mk)
 $(call inherit-product-if-exists, vendor/bq/paella/paella-vendor.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-        persist.sys.language=en \
-        persist.sys.country=GB \
         persist.sys.timezone=Europe/Amsterdam
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+        ro.product.locale.language \
+        ro.product.locale.region
