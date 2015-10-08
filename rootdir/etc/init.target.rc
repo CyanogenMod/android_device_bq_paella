@@ -25,6 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /init.sku.${ro.prebundled.mcc}.rc
+import /init.sku.default.rc
 import /init.cne.rc
 
 on init
