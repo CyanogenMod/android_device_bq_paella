@@ -32,6 +32,7 @@
     <int name="maxImageWidth">2592</int>
 
     <!-- User-Agent parameter used in MMS http request -->
+    <bool name="enabledNotifyWapMMSC">true</bool>
     <string name="userAgent">Aquaris_X5/Android-Mms/2.0</string>
 
     <!-- UAProf URL -->
