@@ -50,26 +50,6 @@ TARGET_CAMERA_HAL_PATH := $(DEVICE_PATH)/camera
 #Audio
 BOARD_USES_GENERIC_AUDIO := true
 
--include vendor/dolby/cmbuild.mk
-ifeq ($(DOLBY_PRESENT),true)
-DOLBY_PREBUILT_ARCH := armv7_float_neon_vfpv4
-DOLBY_DAX_VERSION := 2
-DOLBY_DAP := true
-DOLBY_DAP2 := true
-DOLBY_DAP_SW := true
-DOLBY_DAP_PREGAIN := true
-DOLBY_DAP_HW_QDSP_HAL_API := false
-DOLBY_DAP_MOVE_EFFECT := true
-DOLBY_DAP_BYPASS_SOUND_TYPES := false
-DOLBY_UDC := false #true
-DOLBY_UDC_VIRTUALIZE_AUDIO := false #true
-
-include vendor/dolby/ds/dolby-buildspec.mk
-
-AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
-BOARD_USES_SRS_TRUEMEDIA := false
-endif
-
 # CMHW
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
 

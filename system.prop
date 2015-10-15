@@ -4,8 +4,6 @@ persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
 
-audio.dolby.ds2.enabled=true
-
 # mp3/aac offload to Modem
 av.offload.enable=true
 av.streaming.offload.enable=true
