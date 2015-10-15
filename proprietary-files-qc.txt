@@ -104,6 +104,16 @@ vendor/lib/libmmqjpeg_codec.so
 vendor/lib/liboemcamera.so
 vendor/lib/libqomx_jpegenc.so
 
+lib/libarcsoft_beauty_shot.so
+
+lib/libcam.meiyan.so
+lib/libmmcamera_interface.so
+lib/libqomx_core.so
+lib/libmmjpeg_interface.so
+lib/hw/camera.msm8916.so
+lib/libmm-qcamera.so
+
+
 # Camera firmware
 etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
