@@ -91,13 +91,14 @@ int ProximitySensor::enable(int32_t, int en) {
         write(fd, buf, sizeof(buf));
         close(fd);
         mEnabled = flags;
-        setInitialState();
+        if (mEnabled)
+            setInitialState();        
     }
     return 0;
 }
 
 bool ProximitySensor::hasPendingEvents() const {
-    return mHasPendingEvent;
+    return mHasPendingEvent  || mPendingFlushFinishEvent;
 }
 
 int ProximitySensor::readEvents(sensors_event_t* data, int count)
@@ -126,6 +127,7 @@ int ProximitySensor::readEvents(sensors_event_t* data, int count)
 		flush_finish_event.type = SENSOR_TYPE_META_DATA;
 		flush_finish_event.meta_data.what = META_DATA_FLUSH_COMPLETE;
 		flush_finish_event.meta_data.sensor = SENSORS_PROXIMITY_HANDLE;
+        int pEvents = mPendingFlushFinishEvent;
 		while (mPendingFlushFinishEvent){
 			LOGI("<BST> " "report flush finish event for sensor id: %d", flush_finish_event.meta_data.sensor);
 			*data++ = flush_finish_event;
@@ -133,6 +135,7 @@ int ProximitySensor::readEvents(sensors_event_t* data, int count)
 			numEventReceived++;
 			mPendingFlushFinishEvent--;
 		}
+        if (pEvents) return pEvents;
 	}
 #endif
 
