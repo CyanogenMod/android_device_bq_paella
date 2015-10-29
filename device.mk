@@ -87,7 +87,12 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-	init.target.rc \
+    init.target.rc
+
+# Recovery
+PRODUCT_EXTRA_RECOVERY_KEYS += \
+    $(LOCAL_PATH)/paella-releasekey \
+    $(LOCAL_PATH)/piccolo-releasekey
 
 # Wlan Driver
 PRODUCT_COPY_FILES += \
