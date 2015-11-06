@@ -53,6 +53,14 @@ on init
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
 
+on fs
+    mount_all fstab.qcom
+    mkdir /persist/data 0700 system system
+    restorecon_recursive /persist
+    chown system system /persist/xtalk_cal
+    chmod 0600 /persist/xtalk_cal
+    setprop ro.crypto.fuse_sdcard true
+
 on boot
     # TapToWake
     chown root system /sys/android_touch/SMWP
