@@ -4,3 +4,5 @@
 /data/misc/sensor(/.*)?                           u:object_r:sensors_data_file:s0
 
 /dev/block/bootdevice/by-name/config              u:object_r:frp_block_device:s0
+/persist/xtalk_cal                                u:object_r:sensors_data_file:s0
+/persist/g_sensor_correct                         u:object_r:sensors_data_file:s0
