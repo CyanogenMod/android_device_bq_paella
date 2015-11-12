@@ -1,0 +1,1 @@
+allow drmserver system_app_data_file:file read;
