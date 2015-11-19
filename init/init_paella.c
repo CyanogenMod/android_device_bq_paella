@@ -37,7 +37,8 @@
 
 #include "init_msm.h"
 
-short sku_done = 0;
+static short sku_match = 0;
+static char sku_mcc[5] = {0,};
 
 static void import_cmdline(char *name, int for_emulator)
 {
@@ -49,11 +50,14 @@ static void import_cmdline(char *name, int for_emulator)
     if (name_len == 0) return;
 
     if (!strcmp(name,"androidboot.countrycode") && !strncmp(value,"ES",2)) {
-        property_set("ro.prebundled.mcc", "214");
-        sku_done = 1;
+        sprintf(sku_mcc, "214");
+        sku_match++;
     } else if (!strcmp(name,"androidboot.countrycode") && !strncmp(value,"GB",2)) {
-        property_set("ro.prebundled.mcc", "234");
-        sku_done = 1;
+        sprintf(sku_mcc, "234");
+        sku_match++;
+    } else if (!strcmp(name,"androidboot.spncode") && strnlen(value,2)) {
+        // Something with 2 or more chars is set... and it's not "None"
+        if (strncmp(value,"None",4)) sku_match++;
     }
 }
 
@@ -73,7 +77,10 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     char density[5];
     import_kernel_cmdline(0, import_cmdline);
 
-    if (!sku_done) {
+    if (sku_match >= 2 && sku_mcc[0]) {
+        // Matched 2 or more items. Set the customization
+        property_set("ro.prebundled.mcc", sku_mcc);
+    } else {
         // apply defaults
     }
 }
