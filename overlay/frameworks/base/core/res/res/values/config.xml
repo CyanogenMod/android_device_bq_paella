@@ -145,7 +145,6 @@
     <bool name="config_hotswapCapable">true</bool>
     <string name="config_mms_user_agent">Aquaris_X5/Android-Mms/2.0</string>
     <string name="config_mms_user_agent_profile_url">http://storage.googleapis.com/bq-uaprofile/Aquaris_X5_uaprofile.xml</string>
-    <integer name="config_notificationsBatteryMediumARGB">0xFFFF0000</integer>
     <bool name="config_batterySdCardAccessibility">true</bool>
     <bool name="config_intrusiveNotificationLed">true</bool>
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
@@ -157,5 +156,9 @@
          it causes the device to wake up.
          The default is false. -->
     <bool name="config_lidControlsSleep">true</bool>
+
+    <!-- Does the battery LED support multiple colors?
+         Used to decide if the user can change the colors -->
+    <bool name="config_multiColorBatteryLed">true</bool>
 
 </resources>
