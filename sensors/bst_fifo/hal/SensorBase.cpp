@@ -22,7 +22,7 @@
 #include <dirent.h>
 #include <time.h>
 #include <sys/select.h>
-
+#include <string.h>
 #include <linux/input.h>
 #include "sensors.h"
 

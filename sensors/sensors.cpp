@@ -75,14 +75,16 @@ struct sensors_module_t HAL_MODULE_INFO_SYM = {
 };
 
 struct sensors_poll_context_t {
+	// extension for sensors_poll_device_1, must be first
 	struct sensors_poll_device_1_ext_t device;// must be first
-
-		sensors_poll_context_t();
-		~sensors_poll_context_t();
+	sensors_poll_context_t();
+	~sensors_poll_context_t();
 	int activate(int handle, int enabled);
 	int setDelay(int handle, int64_t ns);
 	int pollEvents(sensors_event_t* data, int count);
 	int calibrate(int handle, cal_cmd_t *para);
+	int batch(int handle, int sample_ns, int latency_ns);
+	int flush(int handle);
 
 private:
 	static const size_t wake = MAX_SENSORS;
@@ -90,6 +92,7 @@ private:
 	struct pollfd mPollFds[MAX_SENSORS+1];
 	int mWritePipeFd;
 	SensorBase* mSensors[MAX_SENSORS];
+	mutable Mutex mLock;
 };
 
 /*****************************************************************************/
@@ -137,6 +140,7 @@ sensors_poll_context_t::~sensors_poll_context_t() {
 int sensors_poll_context_t::activate(int handle, int enabled) {
 	int err = -1;
 	NativeSensorManager& sm(NativeSensorManager::getInstance());
+	Mutex::Autolock _l(mLock);
 
 	err = sm.activate(handle, enabled);
 	if (enabled && !err) {
@@ -151,6 +155,7 @@ int sensors_poll_context_t::activate(int handle, int enabled) {
 int sensors_poll_context_t::setDelay(int handle, int64_t ns) {
 	int err = -1;
 	NativeSensorManager& sm(NativeSensorManager::getInstance());
+	Mutex::Autolock _l(mLock);
 
 	err = sm.setDelay(handle, ns);
 
@@ -169,6 +174,7 @@ int sensors_poll_context_t::pollEvents(sensors_event_t* data, int count)
 		// see if we have some leftover from the last poll()
 		for (int i = 0 ; count && i < number ; i++) {
 			if ((mPollFds[i].revents & POLLIN) || (sm.hasPendingEvents(slist[i].handle))) {
+				Mutex::Autolock _l(mLock);
 				int nb = sm.readEvents(slist[i].handle, data, count);
 				if (nb < 0) {
 					ALOGE("readEvents failed.(%d)", errno);
@@ -214,12 +220,37 @@ int sensors_poll_context_t::calibrate(int handle, struct cal_cmd_t *para)
 
 	int err = -1;
 	NativeSensorManager& sm(NativeSensorManager::getInstance());
+	Mutex::Autolock _l(mLock);
 
 	err = sm.calibrate(handle, para);
 
 	return err;
 }
 
+int sensors_poll_context_t::batch(int handle, int sample_ns, int latency_ns)
+{
+	NativeSensorManager& sm(NativeSensorManager::getInstance());
+	Mutex::Autolock _l(mLock);
+
+	return sm.batch(handle, sample_ns, latency_ns);
+}
+
+int sensors_poll_context_t::flush(int handle)
+{
+	int ret;
+	const char wakeMessage(WAKE_MESSAGE);
+	int result;
+
+	NativeSensorManager& sm(NativeSensorManager::getInstance());
+	Mutex::Autolock _l(mLock);
+
+	ret = sm.flush(handle);
+
+	result = write(mWritePipeFd, &wakeMessage, 1);
+	ALOGE_IF(result<0, "error sending wake message (%s)", strerror(errno));
+
+	return ret;
+}
 /*****************************************************************************/
 
 static int poll__close(struct hw_device_t *dev)
@@ -255,6 +286,22 @@ static int poll_calibrate(struct sensors_poll_device_1_ext_t *dev,
 	sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
 	return ctx->calibrate(handle, para);
 }
+
+#if defined(SENSORS_DEVICE_API_VERSION_1_3)
+static int poll__batch(struct sensors_poll_device_1 *dev,
+		int handle, int /*flags*/, int64_t sample_ns,
+		int64_t latency_ns) {
+	sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
+	return ctx->batch(handle, sample_ns, latency_ns);
+}
+
+static int poll__flush(struct sensors_poll_device_1 *dev,
+		int handle) {
+	sensors_poll_context_t *ctx = (sensors_poll_context_t *)dev;
+	return ctx->flush(handle);
+}
+#endif
+
 /*****************************************************************************/
 
 /** Open a new instance of a sensor device using name */
@@ -263,17 +310,27 @@ static int open_sensors(const struct hw_module_t* module, const char*,
 {
 		int status = -EINVAL;
 		sensors_poll_context_t *dev = new sensors_poll_context_t();
+		NativeSensorManager& sm(NativeSensorManager::getInstance());
 
 		memset(&dev->device, 0, sizeof(sensors_poll_device_1_ext_t));
 
 		dev->device.common.tag = HARDWARE_DEVICE_TAG;
-		dev->device.common.version  = 0;
+#if defined(SENSORS_DEVICE_API_VERSION_1_3)
+		ALOGI("Sensors device API version 1.3 supported\n");
+		dev->device.common.version = SENSORS_DEVICE_API_VERSION_1_3;
+#else
+		dev->device.common.version = SENSORS_DEVICE_API_VERSION_0_1;
+#endif
 		dev->device.common.module   = const_cast<hw_module_t*>(module);
 		dev->device.common.close	= poll__close;
 		dev->device.activate		= poll__activate;
 		dev->device.setDelay		= poll__setDelay;
-		dev->device.poll			= poll__poll;
+		dev->device.poll		= poll__poll;
 		dev->device.calibrate		= poll_calibrate;
+#if defined(SENSORS_DEVICE_API_VERSION_1_3)
+		dev->device.batch		= poll__batch;
+		dev->device.flush		= poll__flush;
+#endif
 
 		*device = &dev->device.common;
 		status = 0;

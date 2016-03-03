@@ -45,7 +45,7 @@
 #include <stdlib.h>
 #include <utils/SystemClock.h>
 #include <utils/Timers.h>
-
+#include <string.h>
 #include "BstSensor.h"
 #include "BstSensorInfo.h"
 #include "sensors.h"

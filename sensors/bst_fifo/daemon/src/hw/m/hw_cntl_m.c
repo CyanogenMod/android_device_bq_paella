@@ -403,7 +403,11 @@ static int hw_restore_cfg_m(struct sensor_hw *hw)
 
 	sprintf(path, "%s/input%d/%s",
 			SYSFS_PATH_INPUT_DEV, g_input_dev_num_m, SYSFS_NODE_NAME_BMM_REPT_XY);
+#ifdef L9100_COMMON
+	err = sysfs_write_int(path, 50);
+#else
 	err = sysfs_write_int(path, data->rept_xy);
+#endif
 
 	sprintf(path, "%s/input%d/%s",
 			SYSFS_PATH_INPUT_DEV, g_input_dev_num_m, SYSFS_NODE_NAME_BMM_REPT_Z);

@@ -64,9 +64,6 @@ int CalibrationManager::check_algo(const sensor_cal_algo_t *list)
 {
 	if (list->tag != SENSOR_CAL_ALGO_TAG)
 		return -1;
-	if ((list->type < SENSOR_TYPE_ACCELEROMETER) ||
-			(list->type > SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR))
-		return -1;
 	if (list->compatible == NULL)
 		return -1;
 	if (list->module == NULL)
@@ -243,12 +240,12 @@ const sensor_cal_algo_t* CalibrationManager::getCalAlgo(const sensor_t *s/* = NU
 	}
 
 	if (i != algo_count) {
-		ALOGI("found exactly compatible algo for type %d", s->type);
+		ALOGI("found exactly compatible algo for %s", s->name);
 		return list[i];
 	}
 
 	if (tmp != NULL)
-		ALOGI("found compatible algo for type %d", s->type);
+		ALOGI("found compatible algo for %s", s->name);
 
 	return tmp;
 }

@@ -21,7 +21,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/select.h>
-
+#include <string.h>
 #include "LightSensor.h"
 #include "TargetPlatform.h"
 

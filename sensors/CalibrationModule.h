@@ -45,7 +45,7 @@ __BEGIN_DECLS
 #define TEMPERATURE_NAME	"temperature"
 #define PROXIMITY_NAME		"proximity"
 #define GRAVITY_NAME		"gravity"
-#define LINEAR_ACCELERATION_NAME	"liner_acceleration"
+#define LINEAR_ACCELERATION_NAME	"linear_acceleration"
 #define ROTATION_VECTOR_NAME	"rotation_vector"
 #define RELATIVE_HUMIDITY_NAME	"relative_humidity"
 #define AMBIENT_TEMPERATURE_NAME	"ambient_temperature"
@@ -91,7 +91,7 @@ struct compass_algo_args {
 
 struct gyro_algo_args {
 	struct sensor_algo_args common;
-        float bias[3];
+	float bias[3];
 };
 
 struct sensor_algo_methods_t {

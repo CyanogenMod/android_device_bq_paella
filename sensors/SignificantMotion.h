@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------
-Copyright (c) 2014, The Linux Foundation. All rights reserved.
+Copyright (c) 2015, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -26,8 +26,8 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------*/
 
-#ifndef ANDROID_COMPASS_SENSOR_H
-#define ANDROID_COMPASS_SENSOR_H
+#ifndef ANDROID_SIGNIFICANT_MOTION_SENSOR_H
+#define ANDROID_SIGNIFICANT_MOTION_SENSOR_H
 
 #include <stdint.h>
 #include <errno.h>
@@ -42,22 +42,17 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 struct input_event;
 
-class CompassSensor : public SensorBase {
-	InputEventCircularReader mInputReader;
-	sensors_event_t mPendingEvent;
-	bool mHasPendingEvent;
-	int64_t mEnabledTime;
-	float res;
-
-public:
-	CompassSensor(struct SensorContext *context);
-	virtual ~CompassSensor();
-	virtual int readEvents(sensors_event_t* data, int count);
-	virtual bool hasPendingEvents() const;
-	virtual int setDelay(int32_t handle, int64_t ns);
-	virtual int enable(int32_t handle, int enabled);
+class SmdSensor : public SensorBase {
+        InputEventCircularReader mInputReader;
+        sensors_event_t mPendingEvent;
+        public:
+        SmdSensor(struct SensorContext *context);
+        virtual ~SmdSensor();
+        virtual int readEvents(sensors_event_t* data, int count);
+        virtual bool hasPendingEvents() const {return false;};
+        virtual int enable(int32_t handle, int enabled);
 };
 
 /*****************************************************************************/
 
-#endif  // ANDROID_COMPASS_SENSOR_H
+#endif  // ANDROID_SIGNIFICANT_MOTION_SENSOR_H

@@ -58,7 +58,11 @@ flip_gesture_support ?= false
 softiron_support ?= true
 
 # fast magnetic calibration :off on
-fast_fmc ?= off
+ifneq ($(filter piccolo,$(TARGET_PRODUCT)),)
+fast_fmc ?= on
+else
+fast_fmc ?= on
+endif
 
 # fastest mode configuration
 # 100Hz or 200Hz
@@ -158,4 +162,8 @@ orientation_filtermode = # 1
 # empty to use algorithm default
 magnetic_accuracy_thres = # 1
 
+ifneq ($(filter picmt,$(TARGET_PRODUCT)),)
 LOCAL_CFLAGS += -DL8910_COMMON
+else ifneq ($(filter piccolo,$(TARGET_PRODUCT)),)
+LOCAL_CFLAGS += -DL9100_COMMON
+endif

@@ -47,7 +47,6 @@
 
 GyroSensor::GyroSensor()
 	: SensorBase(NULL, GYRO_INPUT_DEV_NAME),
-	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -56,6 +55,7 @@ GyroSensor::GyroSensor()
 	mPendingEvent.sensor = SENSORS_GYROSCOPE_HANDLE;
 	mPendingEvent.type = SENSOR_TYPE_GYROSCOPE;
 	memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
+	mPendingEvent.gyro.status = SENSOR_STATUS_ACCURACY_HIGH;
 
 	if (data_fd) {
 		strlcpy(input_sysfs_path, "/sys/class/input/", sizeof(input_sysfs_path));
@@ -72,7 +72,6 @@ GyroSensor::GyroSensor()
 
 GyroSensor::GyroSensor(struct SensorContext *context)
 	: SensorBase(NULL, NULL, context),
-	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -81,6 +80,8 @@ GyroSensor::GyroSensor(struct SensorContext *context)
 	mPendingEvent.sensor = context->sensor->handle;
 	mPendingEvent.type = SENSOR_TYPE_GYROSCOPE;
 	memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
+	mPendingEvent.gyro.status = SENSOR_STATUS_ACCURACY_HIGH;
+
 	data_fd = context->data_fd;
 	strlcpy(input_sysfs_path, context->enable_path, sizeof(input_sysfs_path));
 	input_sysfs_path_len = strlen(input_sysfs_path);
@@ -93,7 +94,6 @@ GyroSensor::GyroSensor(struct SensorContext *context)
 
 GyroSensor::GyroSensor(char *name)
 	: SensorBase(NULL, GYRO_INPUT_DEV_NAME),
-	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -102,6 +102,7 @@ GyroSensor::GyroSensor(char *name)
 	mPendingEvent.sensor = SENSORS_GYROSCOPE_HANDLE;
 	mPendingEvent.type = SENSOR_TYPE_GYROSCOPE;
 	memset(mPendingEvent.data, 0, sizeof(mPendingEvent.data));
+	mPendingEvent.gyro.status = SENSOR_STATUS_ACCURACY_HIGH;
 
 	if (data_fd) {
 		strlcpy(input_sysfs_path, SYSFS_CLASS, sizeof(input_sysfs_path));
@@ -144,6 +145,7 @@ int GyroSensor::enable(int32_t, int en) {
 	property_get("sensors.gyro.loopback", propBuf, "0");
 	if (strcmp(propBuf, "1") == 0) {
 		mEnabled = flags;
+		mEnabledTime = 0;
 		ALOGE("sensors.gyro.loopback is set");
 		return 0;
 	}
@@ -165,7 +167,6 @@ int GyroSensor::enable(int32_t, int en) {
 			err = write(fd, buf, sizeof(buf));
 			close(fd);
 			mEnabled = flags;
-			setInitialState();
 			return 0;
 		}
 		return -1;
@@ -174,7 +175,7 @@ int GyroSensor::enable(int32_t, int en) {
 }
 
 bool GyroSensor::hasPendingEvents() const {
-	return mHasPendingEvent;
+	return mHasPendingEvent || mHasPendingMetadata;
 }
 
 int GyroSensor::setDelay(int32_t, int64_t delay_ns)
@@ -192,7 +193,7 @@ int GyroSensor::setDelay(int32_t, int64_t delay_ns)
 	fd = open(input_sysfs_path, O_RDWR);
 	if (fd >= 0) {
 		char buf[80];
-		sprintf(buf, "%d", delay_ms);
+		snprintf(buf, sizeof(buf), "%d", delay_ms);
 		write(fd, buf, strlen(buf)+1);
 		close(fd);
 		return 0;
@@ -209,6 +210,13 @@ int GyroSensor::readEvents(sensors_event_t* data, int count)
 		mHasPendingEvent = false;
 		mPendingEvent.timestamp = getTimestamp();
 		*data = mPendingEvent;
+		return mEnabled ? 1 : 0;
+	}
+
+	if (mHasPendingMetadata) {
+		mHasPendingMetadata--;
+		meta_data.timestamp = getTimestamp();
+		*data = meta_data;
 		return mEnabled ? 1 : 0;
 	}
 

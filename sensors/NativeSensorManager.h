@@ -49,6 +49,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GyroSensor.h"
 #include "PressureSensor.h"
 #include "VirtualSensor.h"
+#include "SignificantMotion.h"
 
 #include "sensors_extension.h"
 #include "sensors_XML.h"
@@ -69,6 +70,7 @@ enum {
 	TYPE_STRING = 0,
 	TYPE_INTEGER,
 	TYPE_FLOAT,
+	TYPE_INTEGER64,
 };
 
 struct SensorContext {
@@ -84,6 +86,7 @@ struct SensorContext {
 	int enable; // indicate if the sensor is enabled
 	bool is_virtual; // indicate if this is a virtual sensor
 	int64_t delay_ns; // the poll delay setting of this sensor
+	int64_t latency_ns; // the max report latency of this sensor
 	struct listnode dep_list; // the background sensor type needed for this sensor
 
 	struct listnode listener; // the head of listeners of this sensor
@@ -98,6 +101,7 @@ struct SysfsMap {
 	int offset;
 	const char *node;
 	int type;
+	int required;
 };
 
 /* To contain the listener list and denpend list */
@@ -115,6 +119,7 @@ class NativeSensorManager : public Singleton<NativeSensorManager> {
 	struct SensorEventMap event_list[MAX_SENSORS];
 	static const struct SysfsMap node_map[];
 	static const struct sensor_t virtualSensorList[];
+	static char virtualSensorName[][SYSFS_MAXLEN];
 
 	int mSensorCount;
 	bool mScanned;
@@ -124,14 +129,16 @@ class NativeSensorManager : public Singleton<NativeSensorManager> {
 	DefaultKeyedVector<int32_t, struct SensorContext*> handle_map;
 	DefaultKeyedVector<int, struct SensorContext*> fd_map;
 
+	void compositeVirtualSensorName(const char *sensor_name, char *chip_name, int type);
 	int getNode(char *buf, char *path, const struct SysfsMap *map);
 	int getSensorListInner();
 	int getDataInfo();
 	int registerListener(struct SensorContext *hw, struct SensorContext *virt);
 	int unregisterListener(struct SensorContext *hw, struct SensorContext *virt);
 	int syncDelay(int handle);
-	int initVirtualSensor(struct SensorContext *ctx, int handle, int64_t dep, struct sensor_t info);
 	int initCalibrate(const SensorContext *list);
+	int initVirtualSensor(struct SensorContext *ctx, int handle, struct sensor_t info);
+	int addDependency(struct SensorContext *ctx, int handle);
 	int getEventPath(const char *sysfs_path, char *event_path);
 	int getEventPathOld(const struct SensorContext *list, char *event_path);
 public:
@@ -144,8 +151,11 @@ public:
 	int hasPendingEvents(int handle);
 	int activate(int handle, int enable);
 	int setDelay(int handle, int64_t ns);
+	int syncLatency(int handle);
 	int readEvents(int handle, sensors_event_t *data, int count);
 	int calibrate(int handle, struct cal_cmd_t *para);
+	int batch(int handle, int64_t sample_ns, int64_t latency_ns);
+	int flush(int handle);
 };
 
 #endif

@@ -40,7 +40,6 @@
 
 PressureSensor::PressureSensor()
 	: SensorBase(NULL, "bmp18x"),
-	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -64,8 +63,7 @@ PressureSensor::PressureSensor()
 }
 
 PressureSensor::PressureSensor(struct SensorContext *context)
-	: SensorBase(NULL, NULL),
-	  mEnabled(0),
+	: SensorBase(NULL, NULL, context),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -84,7 +82,6 @@ PressureSensor::PressureSensor(struct SensorContext *context)
 
 PressureSensor::PressureSensor(char *name)
 	: SensorBase(NULL, "bmp18x"),
-	  mEnabled(0),
 	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
@@ -141,7 +138,6 @@ int PressureSensor::enable(int32_t, int en) {
 			err = write(fd, buf, sizeof(buf));
 			close(fd);
 			mEnabled = flags;
-			setInitialState();
 			return 0;
 		}
 		return -1;
@@ -150,7 +146,7 @@ int PressureSensor::enable(int32_t, int en) {
 }
 
 bool PressureSensor::hasPendingEvents() const {
-	return mHasPendingEvent;
+	return mHasPendingEvent || mHasPendingMetadata;
 }
 
 int PressureSensor::setDelay(int32_t, int64_t delay_ns)
@@ -162,7 +158,7 @@ int PressureSensor::setDelay(int32_t, int64_t delay_ns)
 	fd = open(input_sysfs_path, O_RDWR);
 	if (fd >= 0) {
 		char buf[80];
-		sprintf(buf, "%d", delay_ms);
+		snprintf(buf, sizeof(buf), "%d", delay_ms);
 		write(fd, buf, strlen(buf)+1);
 		close(fd);
 		return 0;
@@ -182,6 +178,13 @@ int PressureSensor::readEvents(sensors_event_t* data, int count)
 		return mEnabled ? 1 : 0;
 	}
 
+	if (mHasPendingMetadata) {
+		mHasPendingMetadata--;
+		meta_data.timestamp = getTimestamp();
+		*data = meta_data;
+		return mEnabled ? 1 : 0;
+	}
+
 	ssize_t n = mInputReader.fill(data_fd);
 	if (n < 0)
 		return n;
@@ -198,35 +201,28 @@ again:
 			float value = event->value;
 			mPendingEvent.pressure = value * CONVERT_PRESSURE;
 		} else if (type == EV_SYN) {
-			switch ( event->code ){
+			switch (event->code) {
 				case SYN_TIME_SEC:
-					{
-						mUseAbsTimeStamp = true;
-						report_time = event->value*1000000000LL;
-					}
-				break;
+					mUseAbsTimeStamp = true;
+					report_time = event->value*1000000000LL;
+					break;
 				case SYN_TIME_NSEC:
-					{
-						mUseAbsTimeStamp = true;
-						mPendingEvent.timestamp = report_time+event->value;
-					}
-				break;
+					mUseAbsTimeStamp = true;
+					mPendingEvent.timestamp = report_time+event->value;
+					break;
 				case SYN_REPORT:
-					{
-						if(mUseAbsTimeStamp != true) {
-							mPendingEvent.timestamp = timevalToNano(event->time);
-						}
-						if (mEnabled) {
-							if (mPendingEvent.timestamp >= mEnabledTime) {
-								*data++ = mPendingEvent;
-								numEventReceived++;
-							}
-							count--;
-						}
+					if(mUseAbsTimeStamp != true) {
+						mPendingEvent.timestamp = timevalToNano(event->time);
 					}
-				break;
+					if (mEnabled) {
+						if (mPendingEvent.timestamp >= mEnabledTime) {
+							*data++ = mPendingEvent;
+							numEventReceived++;
+						}
+						count--;
+					}
+					break;
 			}
-
 		} else {
 			ALOGE("PressureSensor: unknown event (type=%d, code=%d)",
 					type, event->code);

@@ -21,7 +21,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/select.h>
-
+#include <string.h>
 #include "ProximitySensor.h"
 
 #include "TargetPlatform.h"
@@ -92,13 +92,12 @@ int ProximitySensor::enable(int32_t, int en) {
         close(fd);
         mEnabled = flags;
         if (mEnabled)
-            setInitialState();        
-    }
+            setInitialState();      }
     return 0;
 }
 
 bool ProximitySensor::hasPendingEvents() const {
-    return mHasPendingEvent  || mPendingFlushFinishEvent;
+    return mHasPendingEvent || mPendingFlushFinishEvent;
 }
 
 int ProximitySensor::readEvents(sensors_event_t* data, int count)
