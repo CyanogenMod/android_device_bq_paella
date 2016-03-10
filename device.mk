@@ -147,6 +147,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
+    AccCalibration \
     sensord \
     sensors.msm8916
 
