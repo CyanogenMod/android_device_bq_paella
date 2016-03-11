@@ -27,7 +27,6 @@ TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 TARGET_KERNEL_CONFIG := paella_defconfig
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
-WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
 
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
@@ -36,17 +35,7 @@ CONFIG_EAP_PROXY := qmi
 CONFIG_EAP_PROXY_DUAL_SIM := true
 
 # Camera
-BOARD_CAMERA_SENSORS := \
-    imx214_olqba22 \
-    imx214_f13n05k \
-    s5k5e2_olq5f20 \
-    s5k5e2_s7b5
-
-TARGET_USE_VENDOR_CAMERA_EXT := true
-USE_DEVICE_SPECIFIC_CAMERA := true
-
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
-TARGET_CAMERA_HAL_PATH := $(DEVICE_PATH)/camera
+-include $(DEVICE_PATH)/camera/CameraConfig.mk
 
 #Audio
 BOARD_USES_GENERIC_AUDIO := true
@@ -61,11 +50,12 @@ BOARD_USES_QCNE := true
 TARGET_CPU_CORTEX_A53 := true
 
 # GPS
-TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+USE_DEVICE_SPECIFIC_GPS := true
 TARGET_NO_RPC := true
 
 # init
-TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_paella.c
+TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_paella.cpp
 
 # liblights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -91,13 +81,6 @@ TARGET_HW_DISK_ENCRYPTION := false
 
 BOARD_SEPOLICY_DIRS += \
     device/bq/paella/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file.te \
-    system_server.te \
-    system_app.te \
-    drmserver.te \
-    file_contexts
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 
