@@ -13,3 +13,4 @@
 /sys/devices/virtual/input/input.*/acc_offset_x             u:object_r:sysfs_g_sensor:s0
 /sys/devices/virtual/input/input.*/acc_offset_y             u:object_r:sysfs_g_sensor:s0
 /sys/devices/virtual/input/input.*/acc_offset_z             u:object_r:sysfs_g_sensor:s0
+/sys/devices/virtual/input/input.*/pscalibration            u:object_r:sysfs_p_sensor:s0
