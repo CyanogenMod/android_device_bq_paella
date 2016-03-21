@@ -1,2 +1,3 @@
 type touchpanel_sysfs, fs_type, sysfs_type;
 type sysfs_g_sensor, sysfs_type, fs_type;
+type sysfs_p_sensor, sysfs_type, fs_type;

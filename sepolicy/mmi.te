@@ -1,0 +1,9 @@
+allow mmi sysfs_p_sensor:file rw_file_perms;
+allow mmi system_data_file:dir write;
+allow mmi system_data_file:fifo_file read;
+allow mmi system_data_file:fifo_file write;
+allow mmi system_data_file:fifo_file open;
+allow mmi device:dir read;
+allow mmi persist_file:file rw_file_perms;
+allow mmi system_data_file:file { append open write create };
+allow mmi system_data_file:dir { add_name write create };
