@@ -127,7 +127,7 @@ PRODUCT_PACKAGES += \
 	mm-qcamera-daemon \
 	time_daemon \
 	mm-pp-daemon \
-	loc_launcher
+	OmaProvisioning
 
 #Apps
 PRODUCT_PACKAGES += \

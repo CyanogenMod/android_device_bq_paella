@@ -266,7 +266,6 @@ vendor/lib/libril-qcril-hook-oem.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libvendorconn.so
 vendor/lib/libxml.so
--priv-app/ConfigurationClient/ConfigurationClient.apk
 
 # Thermal
 bin/thermal-engine
