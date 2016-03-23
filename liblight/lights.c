@@ -130,6 +130,28 @@ set_light_backlight(struct light_device_t* dev,
 }
 
 static int
+write_int_on_off_time(char const* path, int value, int on, int off)
+{
+    int fd;
+    static int already_warned = 0;
+
+    fd = open(path, O_RDWR);
+    if (fd >= 0) {
+        char buffer[40];
+        int bytes = snprintf(buffer, sizeof(buffer), "%d %d %d \n", value, on, off);
+        ssize_t amt = write(fd, buffer, (size_t)bytes);
+        close(fd);
+        return amt == -1 ? -errno : 0;
+    } else {
+        if (already_warned == 0) {
+            ALOGE("write_int failed to open %s\n", path);
+            already_warned = 1;
+        }
+        return -errno;
+    }
+}
+
+static int
 set_speaker_light_locked(struct light_device_t* dev,
         struct light_state_t const* state)
 {
@@ -166,33 +188,24 @@ set_speaker_light_locked(struct light_device_t* dev,
     blue = colorRGB & 0xFF;
 
     if (onMS > 0 && offMS > 0) {
-        /*
-         * if ON time == OFF time
-         *   use blink mode 2
-         * else
-         *   use blink mode 1
-         */
-        if (onMS == offMS)
-            blink = 2;
-        else
-            blink = 1;
+        blink = onMS;
     } else {
         blink = 0;
     }
 
     if (blink) {
-        if (red) {
-            if (write_int(RED_BLINK_FILE, blink))
-                write_int(RED_LED_FILE, 0);
-	}
-        if (green) {
-            if (write_int(GREEN_BLINK_FILE, blink))
-                write_int(GREEN_LED_FILE, 0);
-	}
-        if (blue) {
-            if (write_int(BLUE_BLINK_FILE, blink))
-                write_int(BLUE_LED_FILE, 0);
-	}
+        if(red)
+            write_int_on_off_time(RED_BLINK_FILE, red, onMS, offMS);
+        else
+            write_int(RED_LED_FILE, red);
+        if(green)
+            write_int_on_off_time(GREEN_BLINK_FILE, green, onMS, offMS);
+        else
+            write_int(GREEN_LED_FILE, green);
+        if(blue)
+            write_int_on_off_time(BLUE_BLINK_FILE, blue, onMS, offMS);
+        else
+            write_int(BLUE_LED_FILE, blue);
     } else {
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
