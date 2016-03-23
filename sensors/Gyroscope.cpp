@@ -161,6 +161,7 @@ int GyroSensor::enable(int32_t, int en) {
 			if (flags) {
 				buf[0] = '1';
 				mEnabledTime = getTimestamp() + IGNORE_EVENT_TIME;
+				sysclk_sync_offset = getClkOffset();
 			} else {
 				buf[0] = '0';
 			}
@@ -263,36 +264,36 @@ again:
 					if (!mEnabled) {
 						break;
 					}
-					if(mPendingEvent.timestamp >= mEnabledTime) {
-						raw = mPendingEvent;
-						if (algo != NULL) {
-							if (algo->methods->convert(&raw, &result, NULL)) {
-								ALOGE("Calibrated failed\n");
-								result = raw;
-							}
-						} else {
+
+					mPendingEvent.timestamp -= sysclk_sync_offset;
+					raw = mPendingEvent;
+					if (algo != NULL) {
+						if (algo->methods->convert(&raw, &result, NULL)) {
+							ALOGE("Calibrated failed\n");
 							result = raw;
 						}
-						*data = result;
-						data->version = sizeof(sensors_event_t);
-						data->sensor = mPendingEvent.sensor;
-						data->type = SENSOR_TYPE_GYROSCOPE;
-						data->timestamp = mPendingEvent.timestamp;
-						/* The raw data is stored inside sensors_event_t.data after
-						 * sensors_event_t.gyroscope. Notice that the raw data is
-						 * required to composite the virtual sensor uncalibrated
-						 * gyroscope field sensor.
-						 *
-						 * data[0~2]: calibrated gyroscope field data.
-						 * data[3]: gyroscope field data accuracy.
-						 * data[4~6]: uncalibrated gyroscope field data.
-						 */
-						data->data[4] = mPendingEvent.data[0];
-						data->data[5] = mPendingEvent.data[1];
-						data->data[6] = mPendingEvent.data[2];
-						data++;
-						numEventReceived++;
+					} else {
+						result = raw;
 					}
+					*data = result;
+					data->version = sizeof(sensors_event_t);
+					data->sensor = mPendingEvent.sensor;
+					data->type = SENSOR_TYPE_GYROSCOPE;
+					data->timestamp = mPendingEvent.timestamp;
+					/* The raw data is stored inside sensors_event_t.data after
+					 * sensors_event_t.gyroscope. Notice that the raw data is
+					 * required to composite the virtual sensor uncalibrated
+					 * gyroscope field sensor.
+					 *
+					 * data[0~2]: calibrated gyroscope field data.
+					 * data[3]: gyroscope field data accuracy.
+					 * data[4~6]: uncalibrated gyroscope field data.
+					 */
+					data->data[4] = mPendingEvent.data[0];
+					data->data[5] = mPendingEvent.data[1];
+					data->data[6] = mPendingEvent.data[2];
+					data++;
+					numEventReceived++;
 					count--;
 				break;
 			}
