@@ -1,3 +1,3 @@
-ifneq ($(filter piccolo picmt,$(TARGET_PRODUCT)),)
+ifneq ($(filter paella,$(TARGET_PRODUCT)),)
 include $(all-subdir-makefiles)
 endif

@@ -162,7 +162,7 @@ orientation_filtermode = # 1
 # empty to use algorithm default
 magnetic_accuracy_thres = # 1
 
-ifneq ($(filter picmt,$(TARGET_PRODUCT)),)
+ifneq ($(filter paella,$(TARGET_PRODUCT)),)
 LOCAL_CFLAGS += -DL8910_COMMON
 else ifneq ($(filter piccolo,$(TARGET_PRODUCT)),)
 LOCAL_CFLAGS += -DL9100_COMMON
