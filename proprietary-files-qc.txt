@@ -105,7 +105,7 @@ vendor/lib/libmmqjpeg_codec.so
 vendor/lib/liboemcamera.so
 vendor/lib/libqomx_jpegenc.so
 
-lib/libmpbase.so
+-lib/libmpbase.so
 lib/libarcsoft_hdr.so
 lib/libcam.beautyshot.so
 
