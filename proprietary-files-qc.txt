@@ -50,6 +50,7 @@ vendor/lib/libchromatix_imx214_olqba22_hfr_90fps.so
 vendor/lib/libchromatix_imx214_f13n05k_common.so
 vendor/lib/libchromatix_imx214_f13n05k_liveshot.so
 vendor/lib/libmmcamera_imx214_f13n05k.so
+vendor/lib/libmmcamera_imx214_f13n05k_eeprom.so
 vendor/lib/libchromatix_imx214_f13n05k_snapshot.so
 vendor/lib/libchromatix_imx214_f13n05k_video_hd.so
 vendor/lib/libchromatix_imx214_f13n05k_preview.so
@@ -104,9 +105,10 @@ vendor/lib/libmmqjpeg_codec.so
 vendor/lib/liboemcamera.so
 vendor/lib/libqomx_jpegenc.so
 
-lib/libarcsoft_beauty_shot.so
+lib/libmpbase.so
+lib/libarcsoft_hdr.so
+lib/libcam.beautyshot.so
 
-lib/libcam.meiyan.so
 lib/libmmcamera_interface.so
 lib/libqomx_core.so
 lib/libmmjpeg_interface.so
