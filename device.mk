@@ -64,7 +64,8 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8916 
+    camera.msm8916 \
+    libmpbase
 
 # Lights
 PRODUCT_PACKAGES += \
