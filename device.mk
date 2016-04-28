@@ -143,7 +143,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1 \
-    persist.dpm.feature=3
+    persist.dpm.feature=7
 
 # Sensors
 PRODUCT_PACKAGES += \
