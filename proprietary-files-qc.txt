@@ -58,12 +58,6 @@ vendor/lib/libchromatix_imx214_f13n05k_hfr_90fps.so
 vendor/lib/libchromatix_imx214_f13n05k_hfr_120fps.so
 vendor/lib/libchromatix_imx214_f13n05k_hfr_60fps.so
 vendor/lib/libchromatix_imx214_f13n05k_default_video.so
-vendor/lib/libchromatix_s5k5e2_olq5f20_liveshot.so
-vendor/lib/libchromatix_s5k5e2_olq5f20_preview.so
-vendor/lib/libchromatix_s5k5e2_olq5f20_video.so
-vendor/lib/libchromatix_s5k5e2_olq5f20_video_hd.so
-vendor/lib/libchromatix_s5k5e2_olq5f20_common.so
-vendor/lib/libchromatix_s5k5e2_olq5f20_snapshot.so
 vendor/lib/libmmcamera_s5k5e2_s7b5_eeprom.so
 vendor/lib/libmmcamera_s5k5e2_s7b5.so
 vendor/lib/libchromatix_s5k5e2_s7b5_liveshot.so
@@ -72,6 +66,14 @@ vendor/lib/libchromatix_s5k5e2_s7b5_video_hd.so
 vendor/lib/libchromatix_s5k5e2_s7b5_preview.so
 vendor/lib/libchromatix_s5k5e2_s7b5_common.so
 vendor/lib/libchromatix_s5k5e2_s7b5_video.so
+vendor/lib/libchromatix_s5k5e2_olq5f24_liveshot.so
+vendor/lib/libchromatix_s5k5e2_olq5f24_video.so
+vendor/lib/libchromatix_s5k5e2_olq5f24_common.so
+vendor/lib/libmmcamera_s5k5e2_olq5f24_eeprom.so
+vendor/lib/libchromatix_s5k5e2_olq5f24_preview.so
+vendor/lib/libmmcamera_s5k5e2_olq5f24.so
+vendor/lib/libchromatix_s5k5e2_olq5f24_snapshot.so
+vendor/lib/libchromatix_s5k5e2_olq5f24_video_hd.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -92,9 +94,7 @@ vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_imglib.so
-vendor/lib/libmmcamera_s5k5e2_olq5f20.so
 vendor/lib/libmmcamera_imx214_olqba22.so
-vendor/lib/libmmcamera_s5k5e2_olq5f20_eeprom.so
 vendor/lib/libmmcamera_imx214_olqba22_eeprom.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
@@ -139,8 +139,6 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
 etc/permissions/com.qualcomm.location.xml
--lib/libloc_api_v02.so
--lib/libloc_ds_api.so
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/lib/hw/flp.default.so
 vendor/lib/libgeofence.so
@@ -189,20 +187,16 @@ etc/firmware/a300_pm4.fw
 
 # Media
 lib/libOmxVdecHevc.so
-vendor/lib/libDivxDrm.so
-vendor/lib/libExtendedExtractor.so
 -vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
-vendor/lib/libmmparser.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libSHIMDivxDrm.so
 
 # Perf
-bin/perfd
+vendor/bin/perfd
 vendor/lib/libqti-perfd-client.so
 
 # Postprocessing
@@ -231,7 +225,7 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libsmemlog.so
 
 # Radio
--app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+-priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/cnd
 bin/dpmd
 bin/netmgrd
@@ -272,7 +266,7 @@ vendor/lib/libvendorconn.so
 vendor/lib/libxml.so
 
 # Thermal
-bin/thermal-engine
+vendor/bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
