@@ -201,4 +201,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
         ro.product.locale.language \
-        ro.product.locale.region
+        ro.product.locale.region \
+        ro.product.locale
