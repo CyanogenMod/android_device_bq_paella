@@ -1,3 +1,3 @@
-ifneq ($(filter paella,$(TARGET_PRODUCT)),)
+ifneq ($(filter paella,$(TARGET_DEVICE)),)
 include $(all-subdir-makefiles)
 endif
