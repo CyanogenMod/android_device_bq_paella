@@ -278,6 +278,9 @@ vendor/lib/libvendorconn.so
 vendor/lib/libxml.so
 vendor/lib/libril-qc-radioconfig.so
 vendor/lib/liblqe.so
+etc/qmi_fw.conf
+etc/data/netmgr_config.xml
+bin/nl_listener
 
 # Thermal
 vendor/bin/thermal-engine
