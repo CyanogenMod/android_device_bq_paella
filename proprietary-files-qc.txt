@@ -99,7 +99,6 @@ vendor/lib/libmmcamera_imx214_olqba22_eeprom.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_wavelet_lib.so
-vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmipl.so
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
@@ -108,7 +107,6 @@ vendor/lib/libqomx_jpegenc.so
 
 -lib/libmpbase.so
 lib/libarcsoft_beautyshot.so
-lib/libarcsoft_hdr.so
 lib/libcam.beautyshot.so
 
 lib/libmmcamera_interface.so

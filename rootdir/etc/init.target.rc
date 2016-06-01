@@ -54,10 +54,6 @@ on boot
     setprop ro.product.locale.language en
     setprop ro.product.locale.region US
 
-
-on property:wlan.driver.status=ok
-    insmod /system/lib/modules/wlan.ko
-
 service sensord /system/bin/sensord
     class late_start
     user system

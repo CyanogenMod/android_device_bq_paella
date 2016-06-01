@@ -3,7 +3,7 @@ ifneq ($(filter msm8960 msm8610 msm8916 msm8909,$(TARGET_BOARD_PLATFORM)),)
 ifneq ($(TARGET_USES_SSC),true)
 # Disable temporarily for compilling error
 ifneq ($(BUILD_TINY_ANDROID),true)
-ifneq ($(filter paella,$(TARGET_DEVICE)),)
+ifneq ($(filter cm_paella,$(TARGET_PRODUCT)),)
 #BOSCH bst sensors HAL
 include $(all-subdir-makefiles)
 else
