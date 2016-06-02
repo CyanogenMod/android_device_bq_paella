@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2015, The CyanogenMod Project
+   Copyright (c) 2016, The CyanogenMod Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -35,7 +35,7 @@
 #include "log.h"
 #include "util.h"
 
-#include "init_msm.h"
+#include "init_msm8916.h"
 
 static short sku_match = 0;
 static char sku_mcc[5] = {0,};
@@ -61,17 +61,13 @@ static void import_cmdline(char *name, int for_emulator)
     }
 }
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void init_target_properties()
 {
     char device[PROP_VALUE_MAX];
     int rc;
 
-    UNUSED(msm_id);
-    UNUSED(msm_ver);
-    UNUSED(board_type);
-
     rc = property_get("ro.cm.device", device);
-    if (!rc || !ISMATCH(device, "paella"))
+    if (!rc || strcmp(device, "paella"))
         return;
 
     char density[5];
