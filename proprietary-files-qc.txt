@@ -233,6 +233,9 @@ vendor/lib/libqmi_encdec.so
 -vendor/lib/libqmiservices.so
 -vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
+vendor/lib/libconnctrl.so
+vendor/lib/libQtiTether.so
+-priv-app/QtiTetherService/QtiTetherService.apk
 
 # Radio
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
@@ -246,6 +249,7 @@ bin/rmt_storage
 etc/permissions/com.qrd.wappush.xml
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
+etc/permissions/ConnectivityExt.xml
 -framework/cneapiclient.jar
 -framework/com.quicinc.cne.jar
 -framework/com.qti.dpmframework.jar
