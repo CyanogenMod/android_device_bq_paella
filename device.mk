@@ -165,6 +165,10 @@ PRODUCT_COPY_FILES+= \
 PRODUCT_PACKAGES += \
     gps.msm8916
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8916
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
