@@ -145,6 +145,9 @@ PRODUCT_PACKAGES += \\
 PRODUCT_PACKAGES += \\
     libwpa_qmi_eap_proxy
 
+PRODUCT_PACKAGES += \\
+    OmaDrmEngine
+
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
 
@@ -236,6 +239,16 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_CLASS := APPS
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_CERTIFICATE := platform
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := OmaDrmEngine
+LOCAL_SRC_FILES := proprietary/app/OmaDrmEngine/OmaDrmEngine.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := APPS
+LOCAL_PRIVILEGED_MODULE := false
 LOCAL_CERTIFICATE := platform
 include \$(BUILD_PREBUILT)
 
