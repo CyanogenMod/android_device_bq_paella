@@ -105,7 +105,6 @@
     <!-- configuration for error toast during retry -->
     <bool name="config_mms_retry_toast">false</bool>
     <bool name="enable_filter_threads_by_sim">false</bool>
-    <bool name="enable_data_for_mms">true</bool>
 
     <integer name="max_chips_parsed">15</integer>
 </resources>
