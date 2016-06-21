@@ -127,8 +127,7 @@ PRODUCT_PACKAGES += \
 	ssr_diag \
 	mm-qcamera-daemon \
 	time_daemon \
-	mm-pp-daemon \
-	OmaProvisioning
+	mm-pp-daemon
 
 #Apps
 PRODUCT_PACKAGES += \

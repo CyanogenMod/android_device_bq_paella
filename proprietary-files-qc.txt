@@ -282,6 +282,7 @@ vendor/lib/liblqe.so
 etc/qmi_fw.conf
 etc/data/netmgr_config.xml
 bin/nl_listener
+-priv-app/ConfigurationClient/ConfigurationClient.apk
 
 # Thermal
 vendor/bin/thermal-engine
