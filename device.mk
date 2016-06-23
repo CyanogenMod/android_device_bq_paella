@@ -34,7 +34,8 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 #Keylayout
 PRODUCT_PACKAGES += \
-	himax-touchscreen.kl
+	himax-touchscreen.kl \
+	msm8x16-skui-snd-card_Button_Jack.kl
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
