@@ -43,12 +43,6 @@ ro.usb.id.ums=3007
 ro.usb.id.ums_adb=3008
 ro.usb.vid=2a47
 
-#Set composition for USB
-persist.sys.usb.config=mtp
-
-##Set read only default composition for USB
-ro.sys.usb.default.config=mtp
-
 #Subsystem
 persist.sys.ssr.enable_debug=1
 
