@@ -79,7 +79,7 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_profiles_8916.xml:system/etc/media_profiles.xml \
-    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml
+    $(LOCAL_PATH)/media/media_codecs_performance_8916_32.xml:system/etc/media_codecs_performance.xml
 
 # Sensor HAL
 PRODUCT_PACKAGES += \
