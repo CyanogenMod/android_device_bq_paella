@@ -245,14 +245,12 @@ bin/qmuxd
 bin/radish
 bin/rfs_access
 bin/rmt_storage
-etc/permissions/com.qrd.wappush.xml
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/ConnectivityExt.xml
 -framework/cneapiclient.jar
 -framework/com.quicinc.cne.jar
 -framework/com.qti.dpmframework.jar
--framework/com.qrd.wappush.jar
 -framework/dpmapi.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
