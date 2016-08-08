@@ -63,6 +63,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/QRD_Headset_cal.acdb:system/etc/acdbdata/QRD/QRD_Headset_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/QRD_Speaker_cal.acdb:system/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
 
+# First api level, device has been commercially launched
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.first_api_level=22
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8916 \
