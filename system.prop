@@ -5,7 +5,6 @@ persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
 
 # mp3/aac offload to Modem
-av.offload.enable=true
 av.streaming.offload.enable=true
 audio.offload.gapless.enabled=true
 audio.offload.pcm.16bit.enable=true
