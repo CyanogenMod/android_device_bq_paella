@@ -2,4 +2,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
      <!-- Configuration for sending and receiving Mms when mobile data is disabled.-->
      <bool name="config_enable_mms_with_mobile_data_off">true</bool>
+
+     <!-- pre-defined apps -->
+     <!-- value should be in the format "com.package.name/com.package.name.MmsPushReceiver" -->
+     <string name="default_wap_push_handler">com.cyngn.wappush/com.cyngn.wappush.MmsPushReceiver</string>
 </resources>
