@@ -282,6 +282,11 @@ etc/data/netmgr_config.xml
 bin/nl_listener
 -priv-app/ConfigurationClient/ConfigurationClient.apk
 
+# Radio - dependencies
+framework/qti-telephony-common.jar
+framework/QtiTelephonyServicelibrary.jar
+-app/QtiTelephonyService/QtiTelephonyService.apk
+
 # Thermal
 vendor/bin/thermal-engine
 vendor/lib/libthermalclient.so
