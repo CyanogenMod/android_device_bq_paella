@@ -36,6 +36,8 @@ CONFIG_EAP_PROXY_DUAL_SIM := true
 
 # Camera
 -include $(DEVICE_PATH)/camera/CameraConfig.mk
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+BOARD_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
 
 #Audio
 BOARD_USES_GENERIC_AUDIO := true
@@ -94,6 +96,8 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 an
 TARGET_KERNEL_SOURCE := kernel/bq/msm8916
 
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+TARGET_USES_MEDIA_EXTENSIONS := true
 
 # inherit from the proprietary version
 -include vendor/bq/paella/BoardConfigVendor.mk
