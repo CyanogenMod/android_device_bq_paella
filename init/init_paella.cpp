@@ -40,34 +40,27 @@
 static short sku_match = 0;
 static char sku_mcc[5] = {0,};
 
-static void import_cmdline(char *name, int for_emulator)
+static void import_cmdline(const std::string& key,
+        const std::string& value, bool for_emulator __attribute__((unused)))
 {
-    char *value = strchr(name, '=');
-    int name_len = strlen(name);
+    if (key.empty()) return;
 
-    if (value == 0) return;
-    *value++ = 0;
-    if (name_len == 0) return;
-
-    if (!strcmp(name,"androidboot.countrycode") && !strncmp(value,"ES",2)) {
+    if (key == "androidboot.countrycode" && value == "ES") {
         sprintf(sku_mcc, "214");
         sku_match++;
-    } else if (!strcmp(name,"androidboot.countrycode") && !strncmp(value,"GB",2)) {
+    } else if (key == "androidboot.countrycode" && value == "GB") {
         sprintf(sku_mcc, "234");
         sku_match++;
-    } else if (!strcmp(name,"androidboot.spncode") && strnlen(value,2)) {
-        // Something with 2 or more chars is set... and it's not "None" nor "NONE"
-        if (strncmp(value,"None",4) && strncmp(value,"NONE",4)) sku_match++;
-    }
+    } 
 }
 
 void init_target_properties()
 {
-    char device[PROP_VALUE_MAX];
-    int rc;
 
-    rc = property_get("ro.cm.device", device);
-    if (!rc || strcmp(device, "paella"))
+    std::string device = property_get("ro.cm.device");
+
+
+    if (device != "paella")
         return;
 
     char density[5];

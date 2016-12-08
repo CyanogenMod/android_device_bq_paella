@@ -17,6 +17,11 @@ ro.config.always_show_roaming=true
 # Display
 ro.sf.lcd_density=320
 
+# Camera
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+
+
 # Enable OMA-CP
 persist.omacp.enable=true
 
